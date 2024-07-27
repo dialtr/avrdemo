@@ -19,5 +19,5 @@ main.hex:
 	rm main.elf
 
 .PHONY:
-flash:
+flash: main.hex
 	avrdude -c avrisp2 -p atmega328p -P $(PGMPORT) -U flash:w:main.hex
