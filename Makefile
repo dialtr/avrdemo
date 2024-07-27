@@ -1,5 +1,8 @@
-CC=avr-gcc
-OBJCOPY=avr-objcopy
+# Program Arduino UNO with STK500 mkII Programmer
+
+CC = avr-gcc
+OBJCOPY = avr-objcopy
+PGMPORT ?= /dev/ttyUSB0
 
 .PHONY:
 all: main.hex
@@ -17,4 +20,4 @@ main.hex:
 
 .PHONY:
 flash:
-	avrdude -c avrisp2 -p atmega328p -P /dev/ttyUSB0 -U flash:w:main.hex
+	avrdude -c avrisp2 -p atmega328p -P $(PGMPORT) -U flash:w:main.hex

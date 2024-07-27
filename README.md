@@ -30,7 +30,6 @@ This repo does not (yet) document what is needed to install avrdude. However,
 If you're using Linux Mint like I am, or Debian, or Ubuntu, then you can
 probably just install the avrdude packages from Synaptic Package Manager.
 
-
 ### Disabling BRLTTY
 
 My STK500mkII clone (ordered from Amazon) was connecting and disconnecting
@@ -54,9 +53,25 @@ systemctl disable brltty.service
 The Makefile builds an empty **main()** program and generates the hex file for
 it.  To flash the device, just type:
 
-    make flash
+    PGMPORT=<your-programmers-tty> make flash
 
-and it should work. Note that you will have to edit the Makefile to have the
-correct TTY.
+For example, if, like me, your programmer is attached to /dev/ttyUSB0, then:
 
+    PGMPORT=/dev/ttyUSB0 make flash
+
+In fact, /dev/ttyUSB0 is the default, simply because that's what it is on my
+machine. If you are not sure what port you need to use, you can find out
+pretty easily.  Just type:
+
+    dmesg
+
+And near the end you will probably see a line like this:
+
+    [ 3283.315966] usb 1-1: ch341-uart converter now attached to ttyUSB0
+
+Telling you that /dev/ttyUSB0 is the way to go.
+
+## Contacting me
+
+Tom R. Dial <dialtr at gmail dot com>
 
