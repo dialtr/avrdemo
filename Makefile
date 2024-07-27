@@ -11,7 +11,7 @@ all: main.hex
 clean:
 	-rm -f *.o *.elf *.hex
 
-main.hex:
+main.hex: main.c
 	$(CC) -Os -DF_CPU=8000000 -mmcu=atmega328p -c main.c
 	$(CC) -DF_CPU=8000000 -mmcu=atmega328p -o main.elf main.o
 	$(OBJCOPY) -O ihex main.elf main.hex
